@@ -13,13 +13,7 @@ class Post(SQLModel, table=True):
     text: str
     date: datetime = Field(default_factory=datetime.utcnow, nullable=False)
     user_id: Optional[int] = Field(foreign_key='user.id')
-    parent_id: Optional[int] = Field(foreign_key='post.id')
     user: Optional['User'] = Relationship(back_populates='posts')
-    parent: Optional['Post'] = Relationship(
-        back_populates='replies',
-        sa_relationship_kwargs=dict(remote_side='Post.id'),
-    )
-    replies: list['Post'] = Relationship(back_populates='parent')
 
     def __lt__(self, other):
         return self.date < other.date
@@ -30,18 +24,10 @@ class PostResponse(BaseModel):
     text: str
     date: datetime
     user_id: int
-    parent_id: Optional[int]
-
-
-class PostResponseWithReplies(PostResponse):
-    replies: Optional[list['PostResponse']] = None
-
-    class Config:
-        orm_mode = True
 
 
 class PostRequest(BaseModel):
-    parent_id: Optional[int]
+    date: datetime
     text: str
 
     class Config:

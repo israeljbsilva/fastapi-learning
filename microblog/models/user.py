@@ -30,3 +30,7 @@ class UserRequest(BaseModel):
     password: str
     avatar: Optional[str] = None
     bio: Optional[str] = None
+
+
+class UserRequestPost(BaseModel):
+    id: int
