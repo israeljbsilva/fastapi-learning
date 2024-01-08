@@ -1,7 +1,11 @@
-from typing import Optional
-from sqlmodel import Field, SQLModel
+from typing import Optional, TYPE_CHECKING, List
+from sqlmodel import Field, SQLModel, Relationship
 
 from pydantic import BaseModel
+
+
+if TYPE_CHECKING:
+    from microblog.models.post import Post
 
 
 class User(SQLModel, table=True):
@@ -11,6 +15,7 @@ class User(SQLModel, table=True):
     avatar: Optional[str] = None
     bio: Optional[str] = None
     password: str = Field(nullable=False)
+    posts: List['Post'] = Relationship(back_populates='user')
 
 
 class UserResponse(BaseModel):
