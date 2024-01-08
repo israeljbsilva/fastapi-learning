@@ -6,3 +6,9 @@ app = FastAPI(
     version="0.1.0",
     description="Microblog is a posting app",
 )
+
+
+@app.get("/")
+async def index():
+    return {"hello": "world"}
+
