@@ -40,3 +40,17 @@ pip install -r requirements.txt
 
 #### Para derrubar o ambiente, execute o seguinte comando.
 * ```docker-compose down -v```
+
+
+## Migrações
+
+Estamos utilizando o alembic para gerenciar as migrações.
+
+Para criar as migrações ou executá-las, precisamos estar dentro do container, para isso, execute:
+* ```docker compose exec api /bin/bash```
+
+Para criar migrações:
+* ```alembic revision --autogenerate -m "initial"```
+
+Para executar migrações:
+* ```alembic upgrade head```
