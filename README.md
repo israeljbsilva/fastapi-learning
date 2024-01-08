@@ -24,22 +24,19 @@ pip install -r requirements.txt
 ```
 
 
-## Executando a aplicação (Docker)
+## Ambiente de Desenvolvimento Docker
 
+#### Caso tenha o Postgres instalado local, deve parar o serviço, pois será utilizado o MySQL do Docker.
+* comando para parar o serviço:
+    * ```sudo service postgresql stop```
+* comando para verificar o status do serviço
+    * ```sudo service postgresql status```
 
-Antes de instalar a aplicação no container, instalar também no ambiente local.
-```
-pip install -e .
-```
+#### Para fazer o build na primeira vez
+* ```docker-compose build```
 
-Buildar o container
-```
-docker build -f Dockerfile.dev -t microblog:latest .
-```
+#### Para subir o ambiente, execute o seguinte comando. E se caso queira parar o ambiente, utilize ctrl + c.
+* ```docker-compose up```
 
-Executar o container
-```
-docker run --rm -it -v $(pwd):/home/app/api -p 8000:8000 microblog
-```
-
-Acesse: http://0.0.0.0:8000/docs
+#### Para derrubar o ambiente, execute o seguinte comando.
+* ```docker-compose down -v```
