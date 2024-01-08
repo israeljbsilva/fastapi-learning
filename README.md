@@ -9,3 +9,17 @@ Utilizando [projeto de microblog (estilo twitter)](https://github.com/rochacbrun
 python -m venv .venv
 source .venv/bin/activate
 ```
+
+## Dependências
+Instalar dependências locais:
+```
+pip install --upgrade pip
+pip install -r requirements-dev.txt
+```
+
+Instalar dependências do projeto:
+```
+pip-compile requirements.in
+pip install -r requirements.txt
+
+```
